@@ -15,17 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/sayhello', function()
-// {
+Route::get('/sayhello', function()
+{
 
-// 	return "Hello Codeup!";
+	return "Hello Codeup!";
 
-// });
+});
 
-// Route::get('/sayhello/{name?}', function($name = 'World')
-// {
-// 	return "Hello, $name!";
-// });
+Route::get('/sayhello/{name?}', function($name = 'World')
+{
+	return "Hello, $name!";
+});
 
 
 
@@ -43,13 +43,23 @@ Route::get('/sayhello/{name}', function($name)
 
 Route::get('/uppercase/{input}', function($input)
 {
-	return strtoupper($input);
+	$data = [];
+
+
+	$data['word'] = $input;
+	$data['wordUpper'] = strtoupper($input); 
+
+	return view('uppercase', $data);
 });
 
 Route::get('/increment/{input}', function($input)
 {
+	$data = [];
 
-	return $input + 1;
+	$data['originalNum'] = $input;
+	$data['sum'] = $input + 1;
+
+	return view('increment', $data);
 
 
 });
