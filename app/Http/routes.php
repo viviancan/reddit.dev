@@ -15,12 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sayhello', function()
-{
+// Route::get('/sayhello', function()
+// {
 
-	return "Hello Codeup!";
+// 	return "Hello Codeup!";
 
-});
+// });
 
 // Route::get('/sayhello/{name?}', function($name = 'World')
 // {
@@ -36,7 +36,8 @@ Route::get('/sayhello/{name}', function($name)
 		return redirect('/');
 	}
 
-	return "Hello, $name!";
+	$data = array('name' => $name);
+	return view('my-first-view', $data);
 
 });
 
@@ -59,6 +60,44 @@ Route::get('/add/{number1}/{number2}', function($number1, $number2)
 	return $number1 + $number2;
 
 });
+
+
+
+
+
+
+
+
+// Within the route, return a random number between 1 and 6.
+
+// Route::get('/rolldice', function()
+// {
+
+// 	$data = [];
+// 	$data['random'] = mt_rand(1, 6);
+// 	return view('roll-dice', $data);
+
+// });
+
+
+// Modify the route to take in a parameter named guess. Someone will access the route by visiting http://reddit.dev/rolldice/1, where 1 is their guess.
+
+Route::get('/rolldice/{guess}', function($guess)
+{
+
+	$data = [];
+	$data['random'] = mt_rand(1, 6);
+	$data['guess'] = $guess;
+	return view('roll-dice', $data);
+
+});
+
+
+
+
+
+
+
 
 
 
