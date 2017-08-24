@@ -32,32 +32,24 @@ class HomeController extends Controller
 
 	public function increment($number)
 	{
-		if($number < 5) {
-			$data['number'] = $number + 1;
-			return view('increment', $data);	
+
+		if(is_numeric($number)){
+			if($number < 5) {
+				$data['number'] = $number + 1;
+				return view('increment', $data);	
+			} else {
+				return redirect()->action('HomeController@resetToZero');		
+			}
 		} else {
-			return redirect()->action('HomeController@resetToZero');		
+			return 1;
 		}
-
-
-		// if(is_numeric($number)){
-		// 	if($number > 5){
-
-		// 		return redirect()->action('HomeController@resetToZero' , array('$number'));
-
-		// 	} else {
-		// 		return view('increment', $data);
-		// 	}
-		// } else {
-		// 	return 1;
-		// }
 	}
 
     public function resetToZero()
     {
 
     	$data['number'] = 0;
-    	return view('increment', $data);
+    	return view('increment')->with($data);
     	
     }
 
