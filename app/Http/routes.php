@@ -11,102 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/sayhello', function()
-{
+Route::get('/', 'HomeController@showWelcome');
 
-	return "Hello Codeup!";
+Route::get('/uppercase/{word}', 'HomeController@uppercase');
 
-});
+Route::get('/lowercase/{word}', 'HomeController@lowercase');
 
-Route::get('/sayhello/{name?}', function($name = 'World')
-{
-	return "Hello, $name!";
-});
+Route::get('/increment/{number}', 'HomeController@increment');
+
+Route::get('/zero', 'HomeController@resetToZero');
 
 
+Route::get('/add/{num1}/{num2}', 'HomeController@add');
 
-Route::get('/sayhello/{name}', function($name)
-{
+Route::get('/sayhello/{name?}', 'HomeController@sayHello');
 
-	if($name == "Kelly"){
-		return redirect('/');
-	}
-
-	$data = array('name' => $name);
-	return view('my-first-view', $data);
-
-});
-
-Route::get('/uppercase/{input}', function($input)
-{
-	$data = [];
-
-
-	$data['word'] = $input;
-	$data['wordUpper'] = strtoupper($input); 
-
-	return view('uppercase', $data);
-});
-
-Route::get('/increment/{input}', function($input)
-{
-	$data = [];
-
-	$data['originalNum'] = $input;
-	$data['sum'] = $input + 1;
-
-	return view('increment', $data);
-
-
-});
-
-Route::get('/add/{number1}/{number2}', function($number1, $number2)
-{
-
-	return $number1 + $number2;
-
-});
+Route::get('/rolldice/{guess}', 'HomeController@rolldice');
 
 
 
+Route::get('sample/{str}', 'SampleController@firstLetter');
 
+Route::get('/process/{num}', 'SampleController@processNum');
 
+Route::get('/double/{num}', 'SampleController@doubleNum');
 
-
-
-// Within the route, return a random number between 1 and 6.
-
-// Route::get('/rolldice', function()
-// {
-
-// 	$data = [];
-// 	$data['random'] = mt_rand(1, 6);
-// 	return view('roll-dice', $data);
-
-// });
-
-
-// Modify the route to take in a parameter named guess. Someone will access the route by visiting http://reddit.dev/rolldice/1, where 1 is their guess.
-
-Route::get('/rolldice/{guess}', function($guess)
-{
-
-	$data = [];
-	$data['random'] = mt_rand(1, 6);
-	$data['guess'] = $guess;
-	return view('roll-dice', $data);
-
-});
-
-
-
-
-
-
+Route::get('/triple/{num}', 'SampleController@tripleNum');
 
 
 

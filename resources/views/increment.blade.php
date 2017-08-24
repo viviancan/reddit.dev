@@ -7,8 +7,11 @@
 @section('content')
 	<div class="container">
 
-		<h1> {{ $originalNum }} + 1 = {{ $sum }} </h1>
+		<h1> {{ $number }} </h1>
+
+		<h1><a href="{{ action('HomeController@increment', array($number)) }}">Add 1 </a></h1>
 		
 	</div>
 
 @stop
+

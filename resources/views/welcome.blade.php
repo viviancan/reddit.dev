@@ -39,7 +39,45 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
+
+                 <?php if(isset($fullName)): ?>
+
+                    <div class="title">Hi, <?= $fullName ?>!</div>
+
+                <?php else :?>
+
+                    <div class="title">Hello, World!</div>
+
+                <?php endif; ?>
+
+
+                <form method="POST" action="/">
+
+                    <input type="text" name="name" placeholder="Input your name">
+
+                    <button type="submit">Submit</button>
+                    
+                </form>
+
             </div>
         </div>
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
