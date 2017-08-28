@@ -15,8 +15,8 @@
 		<p>Url: {{$post->url}}</p>
 		<p>Content: {{$post->content}}</p>
 		<p>Created By: User {{$post->created_by}}</p>
-		<p>Created At: {{$post->created_at}}</p>
-		<p>Updated At: {{$post->updated_at}}</p>
+		<p>Created At: {{$post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A')}}</p>
+		<p>Updated At: {{$post->updated_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A')}}</p>
 
 
 		<hr>

@@ -19,6 +19,9 @@ class PostsController extends Controller
         // return "Shows a list of all posts";
         $posts = \App\Models\Post::all(); 
 
+        $posts = \App\Models\Post::paginate(4);
+
+
         $data['posts'] = $posts;
         return view('posts.index', $data);
     }
@@ -41,12 +44,17 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $result = $this->validate($request, \App\Models\Post::$rules);
+
         $post = new \App\Models\Post();
         $post->title = $request->title;
         $post->url = $request->url;
         $post->content = $request->content;
         $post->created_by = 1;
         $post->save();
+
+        $request->session()->flash("successMessage" , "Your post was saved successfully");
 
         return \Redirect::action('PostsController@index');
     }
@@ -87,6 +95,8 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {   
+         $result = $this->validate($request, \App\Models\Post::$rules);
+
         $post = \App\Models\Post::find($id);
         $post->title = $request->title;
         $post->content = $request->content;
@@ -94,6 +104,9 @@ class PostsController extends Controller
         $post->created_by = 1;
 
         $post->save();
+
+        $request->session()->flash("successMessage" , "Your post was updataed successfully");
+
 
         return \Redirect::action('PostsController@show', $post->id);
     }
@@ -104,10 +117,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $post = \App\Models\Post::find($id);
         $post->delete();
+
+        $request->session()->flash("successMessage" , "Your post was successfully destroyed");
+
         return \Redirect::action('PostsController@index');
     }
 }
