@@ -13,6 +13,21 @@
 
 
 Route::get('/', 'HomeController@showWelcome');
+Route::resource('posts', 'PostsController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/uppercase/{word}', 'HomeController@uppercase');
 
@@ -40,6 +55,30 @@ Route::get('/double/{num}', 'SampleController@doubleNum');
 Route::get('/triple/{num}', 'SampleController@tripleNum');
 
 
+// lecture on dogs
+// Route::get('orm-test' , function(){
+	// $dog = new App\Models\Dog();
+	// $dog->name = 'Sparky';
+	// $dog->breed = 'Pug';
+	// $dog->age = 2;
+	// $dog->save();
+
+	// $dogs = App\Models\Dog::all();
+	// dd($dogs);
+
+	// $dog = App\Models\Dog::find(1);
+	// echo $dog->name;
+
+	// $dog = App\Models\Dog::find(1);
+	// $dog->name = "Ace";
+	// $dog->save();
+
+
+	// $dog = App\Models\Dog::find(3);
+	// $dog->delete();
+
+
+// });
 
 
 
