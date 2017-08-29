@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        DB::table('votes')->truncate();
         DB::table('posts')->truncate();
         DB::table('users')->truncate();
 
