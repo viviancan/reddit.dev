@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        DB::table('votes')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('posts')->truncate();
         DB::table('users')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
 
 
 
