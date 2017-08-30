@@ -17,7 +17,8 @@
 			<p>Url: {{$post->url}}</p>
 			<p>Content: {{$post->content}}</p>
 			<p>Created By: User {{$post->created_by}}</p>
-			<p>Created at: {{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}</p>
+			<p>Created at: {{ $post->created_at }}</p>
+			<p>Updated at: {{ $post->updated_at }}</p>
 			<hr>
 		@endforeach
 

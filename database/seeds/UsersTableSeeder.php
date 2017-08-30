@@ -42,10 +42,8 @@ class UsersTableSeeder extends Seeder
 		for($i=0; $i<=10; $i++){
 			$user = new User();
 			$user->name = $faker->name;
-			$user->email = $faker->email;
-			$user->password = Hash::make(env('USER_PASSWORD'));
-			// $user->created_at = $faker->dateTime();
-			// $user->updated_at = $faker->dateTime();
+			$user->email = $faker->safeEmail;
+			$user->password = env('USER_PASSWORD');
 			$user->save();
 		}
 
