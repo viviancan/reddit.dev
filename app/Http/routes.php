@@ -39,7 +39,6 @@ Route::get('/logout', function(){
 
 
 
-
 Route::get('/uppercase/{word}', 'HomeController@uppercase');
 
 Route::get('/lowercase/{word}', 'HomeController@lowercase');
