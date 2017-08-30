@@ -26,17 +26,26 @@
 		  </div>
 
 		  <!-- Collect the nav links, forms, and other content for toggling -->
+
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/posts">Posts</a></li>
-					<li><a href="">Register</a></li>
-					<li><a href="">Login</a></li>
-					<li><a href="/posts/create">Create Post</a></li>
-					<li><a href="">Logout</a></li>
+					@if (Auth::check())
+
+					<li><a href="{{ action('PostsController@index') }}">Posts</a></li>
+
+					<li><a href="{{ action('PostsController@create') }}">Create Post</a></li>
+
+					<li><a href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
+
+					@else
+					<li><a href="{{ action('Auth\AuthController@getRegister') }}">Register</a></li>
+
+					<li><a href="{{ action('Auth\AuthController@getLogin')}}">Login</a></li>
+
+					@endif
 				</ul>
 
 			<div class="nav navbar-nav navbar-right">
-				<!-- <div class="col-sm-3 col-md-3"> -->
 					<form class="navbar-form" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search" name="q">
@@ -45,16 +54,13 @@
 							</div>
 						</div>
 					</form>
-				<!-- </div>	 -->
 			</div>
 
 		</nav>
 
-
-
-
-
-
+		{{ (Auth::check()) ? "User is logged in": "user is logged out" }}
+		{{ Auth::id() }}
+		{{ Auth::user() }}
 
 
 

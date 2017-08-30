@@ -7,19 +7,21 @@
 @section('content')
 	<main class="container">
 
-		<h2>Show specific Posts</h2>
-		<!-- {{ $post }} -->
-		
+		<h2> Post {{ $post->id }}</h2>		
 		<p>Title: {{$post->title}}</p>
-		<a href="{{ action('PostsController@edit', $post->id) }}"><span>Edit this post</span></a>
 		<p>Url: {{$post->url}}</p>
 		<p>Content: {{$post->content}}</p>
 		<p>Created By: User {{$post->created_by}}</p>
 		<p>Created At: {{$post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A')}}</p>
 		<p>Updated At: {{$post->updated_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A')}}</p>
 
+		@if($post->created_by == Auth::id())
+			<!-- <a href="{{ action('PostsController@edit', $post->id) }}"><span>Edit this post</span></a> -->
 
-		<hr>
+			<a href="{{ action('PostsController@edit', $post->id) }}" class="btn btn-info" role="button">Edit this post</a>
+
+		@endif
+
 
 	</main>
 

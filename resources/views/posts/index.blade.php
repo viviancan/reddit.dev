@@ -13,7 +13,7 @@
 		<h3>Total Results: {{ $posts ->total() }}</h3>
 
 		@foreach($posts as $post)
-			<h3><a href="{{ action('PostsController@show', $post->id) }}">{{$post->title}}</a></h3>
+			<h3><a href="{{ action('PostsController@show', $post->id) }}">	{{ $post->id }}) {{$post->title}}</a></h3>
 			<p>Url: {{$post->url}}</p>
 			<p>Content: {{$post->content}}</p>
 			<p>Created By: User {{$post->created_by}}</p>

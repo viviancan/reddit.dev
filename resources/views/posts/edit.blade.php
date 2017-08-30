@@ -38,7 +38,7 @@
 			</div>
 
 
-			<button>Submit</button>
+			<button class="btn btn-success">Submit Changes</button>
 
 			{{ method_field('PUT') }}
 

@@ -31,7 +31,9 @@
 				
 				{!! $errors->first('content', '<span class="help-block">:message</span>') !!}
 
-				<input class="form-control" type="text" name="content" value="{{ old('content') }}" placeholder="Enter Content">
+				<!-- <input class="form-control" type="text" name="content" value="{{ old('content') }}" placeholder="Enter Content"> -->
+
+				<textarea class="form-control" placeholder="Body of your post" name="content">{{ old('content') }}</textarea>
 				
 			</div>
 
@@ -44,7 +46,9 @@
 			</div>
 
 
-			<button>Submit</button>
+			<!-- <button>Submit</button> -->
+			<button class="btn btn-success">Submit</button>
+
 
 		</form>
 

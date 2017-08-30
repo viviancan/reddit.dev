@@ -7,11 +7,20 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \App\Models\Post as Post; 
+use Auth;
 
 use Log; 
 
 class PostsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', 
+            ['except' => ['show', 'index']]
+        );
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -49,6 +58,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $userId = Auth::id();
 
         $result = $this->validate($request, Post::$rules);
 
@@ -56,7 +66,7 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->url = $request->url;
         $post->content = $request->content;
-        $post->created_by = 1;
+        $post->created_by = $userId;
         $post->save();
 
         Log::info($post);
@@ -118,7 +128,7 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
         $post->url = $request->url;
-        $post->created_by = 1;
+        $post->created_by = Auth::id();
 
         $post->save();
 
