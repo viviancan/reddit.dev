@@ -26,7 +26,7 @@ class PostsTableSeeder extends Seeder
     			'title'=> $faker->sentence($nbWords = 6, $variableNbWords = true),
     			'url'=> $faker->url,
     			'content'=> $faker->text,
-    			'created_by'=>rand(0,10),
+    			'created_by'=>rand(1,10),
     			'created_at'=> $faker->dateTime(),
     			'updated_at'=> $faker->dateTime()
     		];
