@@ -11,6 +11,12 @@
 @section('content')
 	<main class="container">
 
+	@if(Session::has('message'))
+		<div class="alert alert-danger">
+			{!! session('message') !!}
+		</div>
+	@endif
+
 		<form method="POST" action="/auth/login">
 		    {!! csrf_field() !!}
 
