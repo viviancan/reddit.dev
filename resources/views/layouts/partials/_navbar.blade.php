@@ -14,24 +14,27 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ action('PostsController@index') }}">Posts</a></li>
 
-					@if (Auth::check())
+						<li><a href="{{ action('PostsController@index') }}">View Posts</a></li>
+					@if (!Auth::check())
 
-						<li><a href="{{ action('PostsController@create') }}">Create Post</a></li>
-
-						<li><a href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
-
-					@else
 						<li><a href="{{ action('Auth\AuthController@getRegister') }}">Register</a></li>
 
 						<li><a href="{{ action('Auth\AuthController@getLogin')}}">Login</a></li>
+
+					@else
+						<li><a href="{{ action('PostsController@create') }}">Create Post</a></li>
+
+						<li><a href="{{ action('UsersController@show', Auth::id()) }}">View Account</a></li>
+
+						<li><a href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
+
 					@endif
 					
 				</ul>
 
 			<div class="nav navbar-nav navbar-right">
-					<form class="navbar-form" role="search">
+					<form method="GET" action="{{ action('PostsController@index') }}" class="navbar-form" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search" name="q">
 							<div class="input-group-btn">`
@@ -40,5 +43,7 @@
 						</div>
 					</form>
 			</div>
+
+
 
 		</nav>

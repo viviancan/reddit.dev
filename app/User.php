@@ -24,6 +24,14 @@ class User extends BaseModel implements AuthenticatableContract,
      */
     protected $table = 'users';
 
+    public static $rules = [
+
+        'name' => 'required|min:2|max:200',
+        'email' => 'required',
+
+
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -52,5 +60,36 @@ class User extends BaseModel implements AuthenticatableContract,
     {
         return $this->hasMany('App\Models\Vote' , 'vote_id');
     }
+
+    public function search($search)
+    {
+
+        $users = User::where('name', 'like', "%$search%")->get();
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

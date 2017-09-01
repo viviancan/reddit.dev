@@ -28,11 +28,14 @@ Route::get('/logout', function(){
 	Auth::logout();
 });
 
+// Route::get('users/{search}', function($search, Request $request){
+// 	$users = \App\User::where('name', 'like', "%$search%")->get();
+// 	dd($users);
 
+// })
 
-
-
-
+//User routes
+Route::resource('/users', 'UsersController');
 
 
 
@@ -63,32 +66,6 @@ Route::get('/process/{num}', 'SampleController@processNum');
 Route::get('/double/{num}', 'SampleController@doubleNum');
 
 Route::get('/triple/{num}', 'SampleController@tripleNum');
-
-
-// lecture on dogs
-// Route::get('orm-test' , function(){
-	// $dog = new App\Models\Dog();
-	// $dog->name = 'Sparky';
-	// $dog->breed = 'Pug';
-	// $dog->age = 2;
-	// $dog->save();
-
-	// $dogs = App\Models\Dog::all();
-	// dd($dogs);
-
-	// $dog = App\Models\Dog::find(1);
-	// echo $dog->name;
-
-	// $dog = App\Models\Dog::find(1);
-	// $dog->name = "Ace";
-	// $dog->save();
-
-
-	// $dog = App\Models\Dog::find(3);
-	// $dog->delete();
-
-
-// });
 
 
 

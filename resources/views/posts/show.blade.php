@@ -7,11 +7,10 @@
 @section('content')
 	<main class="container">
 
-		<h2> Post {{ $post->id }}</h2>		
-		<p>Title: {{$post->title}}</p>
+		<h2>{{$post->title}}</h2>
 		<p>Url: {{$post->url}}</p>
 		<p>Content: {{$post->content}}</p>
-		<p>Created By: User {{$post->user->name}}</p>
+		<a href="{{ action('UsersController@show', $post->created_by)}}"><p>Created By: User {{$post->user->name}}</p></a>
 		<p>Created At: {{$post->created_at }}</p>
 		<p>Updated At: {{$post->updated_at }}</p>
 

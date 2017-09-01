@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use \App\Models\Post as Post; 
 use Auth;
+use DB;
 
 use Log; 
 
@@ -16,7 +17,7 @@ class PostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show', 'index']]);
+        $this->middleware('auth', ['except' => [ 'index', 'testBuilder', 'search']]);
     }
 
     /**
@@ -24,22 +25,23 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // return "Shows a list of all posts";
-        // $posts = Post::all(); 
+        if($request->has('q')){
+            $q = $request->q;
+            $posts = Post::search($q);
 
-        // $posts = Post::with('user')->get();
+        } else{
 
-        // $posts = Post::paginate(4);
-
-        $posts = Post::with('user')->paginate(4);
-
-        $data['posts'] = $posts;
-
+            $posts = Post::with('user')->paginate(4);
+        }
+  
         Log::info('A user just visited the index page');
-
+        
+        $data['posts'] = $posts;
+       
         return view('posts.index', $data);
+
     }
 
     /**
@@ -161,4 +163,21 @@ class PostsController extends Controller
 
         return \Redirect::action('PostsController@index');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
